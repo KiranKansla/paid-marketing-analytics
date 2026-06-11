@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2B Paid Marketing Intelligence — Kiranjot Kaur Kansla</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0d1b2a; --blue: #185FA5; --blue-light: #378ADD; --blue-pale: #E6F1FB;
+    --green: #3B6D11; --green-light: #639922; --green-pale: #EAF3DE;
+    --red: #A32D2D; --red-light: #E24B4A; --red-pale: #FCEBEB;
+    --grey: #5F5E5A; --grey-light: #F1EFE8; --white: #ffffff;
+    --text: #2C2C2A; --text-muted: #888780; --border: #D3D1C7;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); line-height: 1.7; }
+
+  /* HERO */
+  .hero { background: var(--navy); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content:''; position:absolute; top:-100px; left:-100px; width:400px; height:400px; background:var(--blue); border-radius:50%; opacity:0.08; }
+  .hero::after { content:''; position:absolute; bottom:-80px; right:-80px; width:300px; height:300px; background:var(--blue-light); border-radius:50%; opacity:0.06; }
+  .hero-tag { display:inline-block; background:var(--blue); color:var(--white); font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:6px 16px; border-radius:20px; margin-bottom:24px; }
+  .hero h1 { font-family:'DM Serif Display',serif; font-size:clamp(30px,5vw,52px); color:var(--white); line-height:1.2; margin-bottom:20px; max-width:800px; margin-left:auto; margin-right:auto; }
+  .hero h1 em { color:#85B7EB; font-style:italic; }
+  .hero-sub { font-size:15px; color:#B5D4F4; max-width:620px; margin:0 auto 32px; }
+  .hero-meta { display:flex; flex-wrap:wrap; gap:24px; justify-content:center; margin-bottom:32px; }
+  .hero-meta span { font-size:12px; color:#85B7EB; }
+  .hero-tags { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+  .tag { background:rgba(255,255,255,0.1); color:#B5D4F4; font-size:12px; padding:6px 14px; border-radius:20px; border:1px solid rgba(255,255,255,0.15); }
+
+  /* LAYOUT */
+  .container { max-width:920px; margin:0 auto; padding:0 24px; }
+  section { padding:60px 0; border-bottom:1px solid var(--border); }
+  section:last-child { border-bottom:none; }
+  .section-label { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:12px; }
+  h2 { font-family:'DM Serif Display',serif; font-size:32px; color:var(--navy); margin-bottom:16px; line-height:1.3; }
+  h3 { font-size:17px; font-weight:600; color:var(--navy); margin-bottom:12px; margin-top:32px; }
+  p { margin-bottom:16px; color:var(--grey); font-size:15px; }
+
+  /* DASHBOARD PREVIEW */
+  .dashboard-preview {
+    border-radius:12px; overflow:hidden; border:1px solid var(--border);
+    box-shadow:0 8px 32px rgba(0,0,0,0.12); margin:32px 0;
+  }
+  .dashboard-preview img { width:100%; display:block; }
+  .dashboard-caption { background:var(--grey-light); padding:12px 16px; font-size:12px; color:var(--text-muted); text-align:center; }
+
+  /* KPI GRID */
+  .kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px; margin:28px 0; }
+  .kpi-card { background:var(--grey-light); border-radius:10px; padding:18px 14px; text-align:center; border:1px solid transparent; }
+  .kpi-card.red { background:var(--red-pale); border-color:#F09595; }
+  .kpi-card.green { background:var(--green-pale); border-color:#C0DD97; }
+  .kpi-card.blue { background:var(--blue-pale); border-color:#B5D4F4; }
+  .kpi-label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:6px; }
+  .kpi-value { font-family:'DM Serif Display',serif; font-size:26px; color:var(--navy); line-height:1; }
+  .kpi-card.red .kpi-value { color:var(--red); }
+  .kpi-card.green .kpi-value { color:var(--green); }
+  .kpi-card.blue .kpi-value { color:var(--blue); }
+  .kpi-sub { font-size:11px; color:var(--text-muted); margin-top:5px; }
+
+  /* INSIGHT BOXES */
+  .insight-box { background:var(--red-pale); border:1px solid #F09595; border-left:4px solid var(--red-light); border-radius:8px; padding:20px 24px; margin:20px 0; }
+  .insight-box h4 { font-size:12px; font-weight:600; color:var(--red); margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; }
+  .insight-box p { color:var(--red); font-size:14px; margin:0; }
+  .good-box { background:var(--green-pale); border:1px solid #C0DD97; border-left:4px solid var(--green-light); border-radius:8px; padding:20px 24px; margin:20px 0; }
+  .good-box h4 { font-size:12px; font-weight:600; color:var(--green); margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; }
+  .good-box p { color:var(--green); font-size:14px; margin:0; }
+  .info-box { background:var(--blue-pale); border:1px solid #B5D4F4; border-left:4px solid var(--blue-light); border-radius:8px; padding:20px 24px; margin:20px 0; }
+  .info-box h4 { font-size:12px; font-weight:600; color:var(--blue); margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; }
+  .info-box p { color:var(--blue); font-size:14px; margin:0; }
+
+  /* TABLE */
+  .compare-table { width:100%; border-collapse:collapse; margin:20px 0; font-size:13px; }
+  .compare-table th { background:var(--navy); color:var(--white); padding:11px 14px; text-align:left; font-weight:500; font-size:11px; text-transform:uppercase; letter-spacing:1px; }
+  .compare-table td { padding:11px 14px; border-bottom:1px solid var(--border); color:var(--grey); }
+  .compare-table tr:nth-child(even) td { background:var(--grey-light); }
+  .compare-table tr.hl-red td { background:var(--red-pale); color:var(--red); font-weight:500; }
+  .compare-table tr.hl-green td { background:var(--green-pale); color:var(--green); font-weight:500; }
+
+  /* TWO COL */
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0; }
+  .stat-card { background:var(--grey-light); border-radius:10px; padding:18px; }
+  .stat-card h4 { font-size:12px; font-weight:600; color:var(--navy); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px; }
+  .stat-row { display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-bottom:1px solid var(--border); color:var(--grey); }
+  .stat-row:last-child { border-bottom:none; }
+  .stat-row span:last-child { font-weight:500; color:var(--text); }
+
+  /* FUNNEL */
+  .funnel-wrap { margin:24px 0; }
+  .funnel-row { display:flex; align-items:center; gap:12px; margin-bottom:6px; }
+  .funnel-label { font-size:12px; color:var(--text-muted); width:100px; text-align:right; flex-shrink:0; }
+  .funnel-bar-wrap { flex:1; }
+  .funnel-bar { height:36px; border-radius:6px; display:flex; align-items:center; padding:0 14px; color:white; font-size:12px; font-weight:500; justify-content:space-between; }
+  .funnel-drop { font-size:11px; color:var(--red); margin-left:8px; white-space:nowrap; }
+  .f-impr { background:var(--navy); width:100%; }
+  .f-click { background:var(--blue-light); width:1.58%; min-width:200px; }
+  .f-conv { background:var(--green-light); width:0.09%; min-width:180px; }
+
+  /* DASHBOARD STRUCTURE */
+  .dash-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin:20px 0; }
+  .dash-cell { background:var(--grey-light); border-radius:8px; padding:14px; font-size:12px; color:var(--grey); border:1px solid var(--border); }
+  .dash-cell.full { grid-column:1/-1; }
+  .dash-cell.half { grid-column:span 2; }
+  .dash-cell h5 { font-size:11px; font-weight:600; color:var(--navy); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
+
+  /* STEPS */
+  .steps { display:flex; flex-direction:column; gap:18px; margin:20px 0; }
+  .step { display:flex; gap:14px; align-items:flex-start; }
+  .step-num { width:30px; height:30px; background:var(--blue); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; flex-shrink:0; margin-top:2px; }
+  .step-content h4 { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:3px; }
+  .step-content p { font-size:13px; margin:0; }
+
+  /* DAX */
+  .dax-block { background:var(--navy); border-radius:8px; padding:18px 20px; margin:16px 0; font-family:monospace; font-size:12px; color:#85B7EB; overflow-x:auto; line-height:1.8; }
+  .dax-block .c { color:#4A7A9B; }
+  .dax-block .k { color:#B5D4F4; }
+  .dax-block .m { color:#97C459; }
+  .dax-block .s { color:#F4C87A; }
+
+  /* TECH */
+  .tech-grid { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0; }
+  .tech-pill { background:var(--blue-pale); color:var(--blue); font-size:12px; font-weight:500; padding:7px 14px; border-radius:20px; border:1px solid #B5D4F4; }
+
+  /* REC */
+  .rec-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0; }
+  .rec-card { background:var(--grey-light); border-radius:10px; padding:18px; border-left:3px solid var(--blue); }
+  .rec-card.urgent { border-left-color:var(--red-light); }
+  .rec-card.positive { border-left-color:var(--green-light); }
+  .rec-card h4 { font-size:11px; font-weight:600; color:var(--navy); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+  .rec-card p { font-size:13px; margin:0; }
+
+  /* LIMITATIONS */
+  .lim-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0; }
+  .lim-card { background:var(--grey-light); border-radius:8px; padding:16px; border-top:2px solid var(--text-muted); }
+  .lim-card h4 { font-size:12px; font-weight:600; color:var(--navy); margin-bottom:5px; }
+  .lim-card p { font-size:12px; color:var(--grey); margin:0; }
+
+  /* ABOUT */
+  .about-card { background:var(--navy); border-radius:16px; padding:36px; display:flex; align-items:center; gap:28px; margin-top:32px; }
+  .avatar { width:68px; height:68px; background:var(--blue); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'DM Serif Display',serif; font-size:22px; color:white; flex-shrink:0; }
+  .about-text h3 { color:white; font-size:19px; margin-bottom:4px; margin-top:0; }
+  .about-text p { color:#B5D4F4; font-size:13px; margin:0 0 14px; }
+  .about-links { display:flex; gap:10px; flex-wrap:wrap; }
+  .about-link { background:rgba(255,255,255,0.1); color:white; font-size:12px; padding:7px 14px; border-radius:20px; text-decoration:none; border:1px solid rgba(255,255,255,0.2); }
+
+  @media(max-width:600px) {
+    .two-col, .rec-grid, .lim-grid, .dash-grid { grid-template-columns:1fr; }
+    .dash-cell.full, .dash-cell.half { grid-column:1; }
+    .about-card { flex-direction:column; text-align:center; }
+    .about-links { justify-content:center; }
+    .hero { padding:60px 20px; }
+    .funnel-label { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">B2B Marketing Analytics · Independent Project · 2026</div>
+  <h1>Paid Marketing <em>Intelligence</em> Dashboard</h1>
+  <p class="hero-sub">Consolidating 5,000+ performance records across B2B paid marketing accounts to surface a 24× CPA inefficiency — and deliver executive-ready recommendations</p>
+  <div class="hero-meta">
+    <span>📊 5,000+ data points analyzed</span>
+    <span>🌍 25+ markets · Multi-currency</span>
+    <span>💰 10.51M kr total spend</span>
+    <span>🏭 B2B · Industrial Sector</span>
+  </div>
+  <div class="hero-tags">
+    <span class="tag">Power BI</span>
+    <span class="tag">DAX</span>
+    <span class="tag">SQL</span>
+    <span class="tag">Multi-Currency Normalization</span>
+    <span class="tag">B2B Paid Marketing</span>
+    <span class="tag">Funnel Analysis</span>
+    <span class="tag">Executive Reporting</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- DASHBOARD PREVIEW -->
+  <section>
+    <div class="section-label">Dashboard Preview</div>
+    <h2>The Final Deliverable</h2>
+    <p>An interactive single-page Power BI dashboard consolidating all performance data — designed so leadership can diagnose portfolio health in under 60 seconds.</p>
+
+    <div class="dashboard-preview">
+      <img src="Project_snapshort.png" alt="Paid Marketing Performance Dashboard — Power BI" />
+      <div class="dashboard-caption">Paid Marketing Performance Dashboard · Power BI · 8 visuals · 6 KPI cards · 6 DAX measures · Dynamic color coding</div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card blue">
+        <div class="kpi-label">Total Spend</div>
+        <div class="kpi-value">10.51Mkr</div>
+        <div class="kpi-sub">SEK normalized</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Conversions</div>
+        <div class="kpi-value">185.37K</div>
+        <div class="kpi-sub">Total acquired</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">CTR</div>
+        <div class="kpi-value">1.58%</div>
+        <div class="kpi-sub">Click-through rate</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">CPC</div>
+        <div class="kpi-value">3.23 kr</div>
+        <div class="kpi-sub">Cost per click</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">CVR</div>
+        <div class="kpi-value">5.69%</div>
+        <div class="kpi-sub">Conversion rate</div>
+      </div>
+      <div class="kpi-card red">
+        <div class="kpi-label">CPA</div>
+        <div class="kpi-value">56.68 kr</div>
+        <div class="kpi-sub">Portfolio avg · NL: 2,206 kr</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section>
+    <div class="section-label">Project Context</div>
+    <h2>The Business Problem</h2>
+    <p>A large B2B organization was running paid marketing across multiple Google Ads accounts, markets, and business areas — each managed independently. Over time they had accumulated 5,000+ performance records with no unified view of portfolio efficiency or data quality available to leadership.</p>
+    <p>I was engaged to consolidate this large-scale, decentralized data, build a meaningful KPI framework, and surface what was really happening across the portfolio — communicated clearly enough for non-technical senior stakeholders to act on immediately.</p>
+
+    <div class="info-box">
+      <h4>📋 Scope of Engagement</h4>
+      <p>5,000+ records reviewed and cleaned · Multi-currency normalization (EUR, GBP → SEK) · Consolidated Power BI dashboard · Business insight extraction · 1-page executive stakeholder summary</p>
+    </div>
+  </section>
+
+  <!-- DATA CHALLENGES -->
+  <section>
+    <div class="section-label">Data Quality</div>
+    <h2>What I Found Before Analysis Even Started</h2>
+    <p>Real-world enterprise data is never clean. I documented four structural issues upfront — because transparent limitations are more valuable than overconfident analysis built on flawed data.</p>
+    <div class="lim-grid">
+      <div class="lim-card">
+        <h4>Multi-Currency Reporting</h4>
+        <p>Accounts reported in EUR, GBP, and SEK. Normalized everything to SEK using proxy exchange rates. Values are directionally accurate for comparison but may not reflect exact financials.</p>
+      </div>
+      <div class="lim-card">
+        <h4>Inconsistent Naming Conventions</h4>
+        <p>Account and campaign names were non-standardized across the portfolio — a common symptom of decentralized management. Required cleaning before reliable aggregation was possible.</p>
+      </div>
+      <div class="lim-card">
+        <h4>No Revenue Data Available</h4>
+        <p>Conversion value data was absent across the dataset. Analysis focuses on volume and efficiency metrics. ROI and ROAS analysis was flagged as a data gap — not estimated.</p>
+      </div>
+      <div class="lim-card">
+        <h4>Conversion Definition Variance</h4>
+        <p>Conversion events may be defined differently across accounts. Similar counts may represent different user actions. All cross-account CVR comparisons noted this caveat explicitly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY FINDINGS -->
+  <section>
+    <div class="section-label">Key Findings</div>
+    <h2>What The Data Actually Showed</h2>
+
+    <div class="insight-box">
+      <h4>🔴 Critical Finding — Netherlands Account</h4>
+      <p>Google Ads Trucks Netherlands: 1.16M kr spend · 87,812 clicks · only 526 conversions · CVR 0.60% · CPA 2,206 kr. Portfolio average CPA: 56.68 kr. The Netherlands account is running at 39× the portfolio CPA. Traffic is arriving but not converting — this is a post-click problem. Likely causes: landing page friction or audience mismatch, not ad creative.</p>
+    </div>
+
+    <div class="good-box">
+      <h4>⭐ Benchmark Finding — Construction Equipment</h4>
+      <p>Construction Equipment account: CVR 21.62% · CPA 49.88 kr — the strongest performer in the portfolio. This account's strategy should be studied and replicated. Its budget should be scaled, not the underperformers.</p>
+    </div>
+
+    <h3>Full Account Performance Breakdown</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Account</th><th>Total Spend</th><th>Clicks</th><th>Conversions</th><th>CVR</th><th>CPA</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr class="hl-red">
+          <td>Google Ads Trucks Netherlands</td><td>1.16M kr</td><td>87,812</td><td>526</td><td>0.60%</td><td>2,206 kr</td><td>🔴 Critical</td>
+        </tr>
+        <tr>
+          <td>Trucks Germany</td><td>1.26M kr</td><td>877,536</td><td>10,231</td><td>1.17%</td><td>122.91 kr</td><td>🔵 Average</td>
+        </tr>
+        <tr>
+          <td>Renault Trucks France</td><td>1.25M kr</td><td>358,470</td><td>14,078</td><td>3.93%</td><td>89.08 kr</td><td>🔵 Average</td>
+        </tr>
+        <tr class="hl-green">
+          <td>Construction Equipment</td><td>2.21M kr</td><td>204,767</td><td>44,262</td><td>21.62%</td><td>49.88 kr</td><td>🟢 Benchmark</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="two-col">
+      <div class="stat-card">
+        <h4>Spend by Market — Top 5</h4>
+        <div class="stat-row"><span>France</span><span>~2.0M kr</span></div>
+        <div class="stat-row"><span>Germany</span><span>~1.6M kr</span></div>
+        <div class="stat-row"><span>Netherlands</span><span>~1.2M kr</span></div>
+        <div class="stat-row"><span>Finland</span><span>~0.8M kr</span></div>
+        <div class="stat-row"><span>Italy</span><span>~0.8M kr</span></div>
+      </div>
+      <div class="stat-card">
+        <h4>CVR by Campaign Type</h4>
+        <div class="stat-row"><span>Search</span><span style="color:var(--green);font-weight:600;">Highest CVR ✅</span></div>
+        <div class="stat-row"><span>Performance Max</span><span>High CVR</span></div>
+        <div class="stat-row"><span>Video</span><span>Mid CVR</span></div>
+        <div class="stat-row"><span>Display</span><span>Low CVR</span></div>
+        <div class="stat-row"><span>Demand Gen</span><span style="color:var(--red);font-weight:600;">Lowest CVR 🔴</span></div>
+      </div>
+    </div>
+
+    <h3>Conversion Funnel — Portfolio Wide</h3>
+    <div class="funnel-wrap">
+      <div class="funnel-row">
+        <div class="funnel-label">Impressions</div>
+        <div class="funnel-bar-wrap">
+          <div class="funnel-bar f-impr">
+            <span>206.40M impressions</span><span>100%</span>
+          </div>
+        </div>
+      </div>
+      <div class="funnel-row">
+        <div class="funnel-label">Clicks</div>
+        <div class="funnel-bar-wrap" style="display:flex;align-items:center;gap:10px;">
+          <div class="funnel-bar f-click" style="width:100%;min-width:0;flex:1;">
+            <span>3.26M clicks</span><span>CTR 1.58%</span>
+          </div>
+          <span class="funnel-drop">↓ 98.42% drop</span>
+        </div>
+      </div>
+      <div class="funnel-row">
+        <div class="funnel-label">Conversions</div>
+        <div class="funnel-bar-wrap" style="display:flex;align-items:center;gap:10px;">
+          <div class="funnel-bar f-conv" style="width:100%;min-width:0;flex:0.6;">
+            <span>0.19M conversions</span><span>CVR 5.69%</span>
+          </div>
+          <span class="funnel-drop">↓ NL: only 0.60% CVR</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHODOLOGY -->
+  <section>
+    <div class="section-label">Methodology</div>
+    <h2>How I Approached The Analysis</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Data Review & Quality Assessment</h4>
+          <p>Reviewed 5,000+ records across accounts, markets, and time periods. Documented all structural data quality issues before touching a single formula — multi-currency reporting, inconsistent naming, missing revenue data, and conversion definition variance.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Normalization & Data Modeling</h4>
+          <p>Standardized all spend figures to SEK using proxy exchange rates. Resolved naming inconsistencies across accounts. Built a dimensional data model in Power BI with fact and dimension table structure.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>KPI Framework — Full Funnel</h4>
+          <p>Designed a four-stage KPI framework: CTR (awareness efficiency) → CPC (traffic cost) → CVR (post-click quality) → CPA (acquisition efficiency). Each metric diagnoses a different funnel stage so problems are located precisely, not just flagged.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Power BI Dashboard — 8 Visuals</h4>
+          <p>Built CPA by account (horizontal bar, color-coded), spend by market (top 5), CVR by campaign type, conversion funnel, spend vs conversions scatter plot, monthly trend combo chart, and a red alert banner. All color coding is data-driven via DAX — no manual formatting.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>Stakeholder Communication</h4>
+          <p>Delivered a 1-page executive summary structured for senior non-technical stakeholders: Key Findings → Data Caveats → Next Steps. Designed to be actionable in 60 seconds, not explored over 30 minutes.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>DAX Measures Built</h3>
+    <div class="dax-block">
+<span class="c">-- Portfolio KPIs</span><br>
+<span class="m">CPA</span> = <span class="k">DIVIDE</span>(SUM([Cost In SEK]), SUM([Conversions]), 0)<br>
+<span class="m">CVR</span> = <span class="k">DIVIDE</span>(SUM([Conversions]), SUM([Clicks]), 0)<br>
+<span class="m">CTR</span> = <span class="k">DIVIDE</span>(SUM([Clicks]), SUM([Impr.]), 0)<br>
+<span class="m">CPC</span> = <span class="k">DIVIDE</span>(SUM([Cost In SEK]), SUM([Clicks]), 0)<br><br>
+<span class="c">-- Spend share — data-driven % of total</span><br>
+<span class="m">Spend % of Total</span> = <span class="k">DIVIDE</span>(SUM([Cost In SEK]),<br>
+&nbsp;&nbsp;<span class="k">CALCULATE</span>(SUM([Cost In SEK]), <span class="k">ALLSELECTED</span>([Country/Territory])), 0)<br><br>
+<span class="c">-- Dynamic color — no hardcoding, data drives the color</span><br>
+<span class="m">CPA Color</span> = <span class="k">IF</span>([CPA] > 500, <span class="s">"#E24B4A"</span>,<br>
+&nbsp;&nbsp;<span class="k">IF</span>([CPA] &lt; 50, <span class="s">"#639922"</span>, <span class="s">"#378ADD"</span>))
+    </div>
+
+    <h3>Dashboard Structure</h3>
+    <div class="dash-grid">
+      <div class="dash-cell full" style="background:var(--blue-pale);border-color:#B5D4F4;">
+        <h5>Row 1 — KPI Cards (full width)</h5>
+        Total Spend · Total Conversions · CTR · CPC · CVR · CPA (red alert)
+      </div>
+      <div class="dash-cell half">
+        <h5>Row 2 Left — CPA by Account</h5>
+        Horizontal bar · Color-coded red/blue/green · Log scale · Portfolio avg line
+      </div>
+      <div class="dash-cell">
+        <h5>Row 2 Right — Scatter Plot</h5>
+        Spend vs Conversions · Bubble = CPA
+      </div>
+      <div class="dash-cell">
+        <h5>Row 3 Left — Spend by Market</h5>
+        Top 5 · Highest spend market highlighted
+      </div>
+      <div class="dash-cell">
+        <h5>Row 3 Mid — CVR by Campaign</h5>
+        Search → Demand Gen · Color coded
+      </div>
+      <div class="dash-cell">
+        <h5>Row 3 Right — Funnel</h5>
+        Impressions → Clicks → Conversions
+      </div>
+      <div class="dash-cell full">
+        <h5>Row 4 — Monthly Trend (full width)</h5>
+        Spend bars + CVR line overlay · Jan–Dec · Dual Y-axis
+      </div>
+      <div class="dash-cell full" style="background:var(--red-pale);border-color:#F09595;">
+        <h5>Alert Banner — Key Insight</h5>
+        ⚠️ Google Ads Trucks Netherlands: 2,206 kr CPA (24× avg) · 0.60% CVR · Immediate audit recommended
+      </div>
+    </div>
+
+    <div class="tech-grid">
+      <span class="tech-pill">Power BI</span>
+      <span class="tech-pill">DAX</span>
+      <span class="tech-pill">Data Modeling</span>
+      <span class="tech-pill">Multi-Currency Normalization</span>
+      <span class="tech-pill">Conditional Formatting</span>
+      <span class="tech-pill">Funnel Analysis</span>
+      <span class="tech-pill">Variance Analysis</span>
+      <span class="tech-pill">Executive Reporting</span>
+      <span class="tech-pill">KPI Framework Design</span>
+    </div>
+  </section>
+
+  <!-- RECOMMENDATIONS -->
+  <section>
+    <div class="section-label">Recommendations</div>
+    <h2>What I Recommended To Leadership</h2>
+    <div class="rec-grid">
+      <div class="rec-card urgent">
+        <h4>🔴 Immediate — Audit Netherlands</h4>
+        <p>Pause or significantly reduce NL Trucks spend. Audit landing page and audience targeting. 87K clicks with only 526 conversions (0.60% CVR) is a post-click breakdown — the ad is working, the destination isn't.</p>
+      </div>
+      <div class="rec-card positive">
+        <h4>🟢 Immediate — Scale Construction Eq.</h4>
+        <p>Redirect budget from Netherlands to Construction Equipment. At 49.88 kr CPA and 21.62% CVR, this account is proven. Additional spend here generates more return per krona than any other account.</p>
+      </div>
+      <div class="rec-card">
+        <h4>📊 Strategic — Live Reporting</h4>
+        <p>Replace ad-hoc analysis with an automated live dashboard with daily FX normalization. Leadership should see this data in real time — not months after the inefficiency developed.</p>
+      </div>
+      <div class="rec-card">
+        <h4>📋 Strategic — Standardize Data</h4>
+        <p>Align conversion definitions and naming conventions across all accounts. Current inconsistency creates reporting blind spots and limits the reliability of cross-account comparison.</p>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:8px;">
+      <h4>📌 Additional Data Needed For Deeper Analysis</h4>
+      <p>Conversion value / revenue data (ROAS calculation) · Customer segmentation / audience data · Budget allocation targets by account · Historical market benchmarks</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section>
+    <div class="section-label">About The Analyst</div>
+    <div class="about-card">
+      <div class="avatar">KK</div>
+      <div class="about-text">
+        <h3>Kiranjot Kaur Kansla</h3>
+        <p>Data Analyst · 9+ years across Banking, Retail & Logistics · SQL · Power BI · DAX · Python · Snowflake · Excel</p>
+        <div class="about-links">
+          <a href="https://linkedin.com/in/kirankansla" class="about-link">LinkedIn</a>
+          <a href="mailto:kirankansla94@gmail.com" class="about-link">Email</a>
+          <a href="https://github.com/kirankansla" class="about-link">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
